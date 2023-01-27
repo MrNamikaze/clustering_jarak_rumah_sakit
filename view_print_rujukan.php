@@ -32,7 +32,7 @@
           color-adjust: exact !important;
           background-image: url("img/surat-rujukan.jpg");
           width: 768px;
-          height: 1024px;
+          height: 563px;
         }
         a.download {
           position: absolute;
@@ -94,7 +94,7 @@
 </head>
 
 <body>
-    <a class="download" href="#" id="download-page-as-image"><i class="fa-solid fa-cloud-arrow-down"></i></a>
+    <a class="download" href="#" id="download-page-as-image"><i class="fa-solid fa-cloud-arrow-down" id="download"></i></a>
     <a class="print" href="#" onclick="window.print()"><i class="fa-solid fa-print"></i></a>
     <a class="delete" href="delete_rujukan.php?id=<?= $id_surat?>"><i class="fa-solid fa-trash"></i></a>
     <div>

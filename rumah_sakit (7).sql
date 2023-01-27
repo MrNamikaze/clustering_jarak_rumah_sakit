@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 28 Jul 2022 pada 08.25
+-- Waktu pembuatan: 01 Sep 2022 pada 05.21
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 7.4.29
 
@@ -46,7 +46,8 @@ INSERT INTO `antrian_janji_medis` (`id`, `id_user`, `id_rumah_sakit`, `poli`, `t
 (3, '1', '1', 'poli gigi', '2022-07-08', '', '1'),
 (4, '1', '4', 'poli gigi', '2022-07-15', '', '1'),
 (5, '1', '4', 'poli jantung', '2022-07-21', 'dwadw', '1'),
-(6, '1', '2', 'poli gigi', '2022-07-22', 'asd', '1');
+(6, '1', '2', 'poli gigi', '2022-07-22', 'asd', '1'),
+(7, '1', '4', 'poli jantung', '2022-09-06', 'nyeri sendi', '1');
 
 -- --------------------------------------------------------
 
@@ -136,6 +137,29 @@ INSERT INTO `dokter` (`id`, `id_dokter`, `nama_dokter`, `id_rumah_sakit`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `rekam_medis`
+--
+
+CREATE TABLE `rekam_medis` (
+  `id` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `tanggal` date NOT NULL,
+  `poli` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `rumah_sakit` int(11) NOT NULL,
+  `dokter` int(11) NOT NULL,
+  `keluhan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `rekam_medis`
+--
+
+INSERT INTO `rekam_medis` (`id`, `id_user`, `tanggal`, `poli`, `rumah_sakit`, `dokter`, `keluhan`) VALUES
+(2, 1, '2022-06-01', 'poli jantung', 7, 4324, 'nyeri sendi');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `rujukan`
 --
 
@@ -157,7 +181,8 @@ CREATE TABLE `rujukan` (
 INSERT INTO `rujukan` (`id`, `id_user`, `id_rumah_sakit`, `id_dokter`, `poli`, `faskes`, `tanggal`, `keluhan`) VALUES
 (2, 1, 7, 4324, 'poli gigi', '2', '2022-07-08', '1'),
 (3, 1, 7, 2233, 'poli gigi', '2', '2022-07-11', '1'),
-(4, 1, 7, 4324, 'poli gigi', '2', '2022-07-19', '1');
+(4, 1, 7, 4324, 'poli gigi', '2', '2022-07-19', '1'),
+(9, 1, 7, 4324, 'poli jantung', '2', '2022-09-06', 'nyeri sendi');
 
 -- --------------------------------------------------------
 
@@ -262,6 +287,12 @@ ALTER TABLE `dokter`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeks untuk tabel `rekam_medis`
+--
+ALTER TABLE `rekam_medis`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indeks untuk tabel `rujukan`
 --
 ALTER TABLE `rujukan`
@@ -287,7 +318,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `antrian_janji_medis`
 --
 ALTER TABLE `antrian_janji_medis`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `clustering`
@@ -314,10 +345,16 @@ ALTER TABLE `dokter`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT untuk tabel `rekam_medis`
+--
+ALTER TABLE `rekam_medis`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT untuk tabel `rujukan`
 --
 ALTER TABLE `rujukan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT untuk tabel `rumah_sakit`

@@ -20,7 +20,8 @@
                 <div class="col-xl-3 col-lg-3 d-none d-lg-block">
                     <div class="Appointment">
                         <div class="book_btn d-none d-lg-block">
-                            <a data-toggle="modal" data-target="#daftar">Klik Disini</a>
+                            <br>
+                            <a class="btn btn-primary" data-toggle="modal" data-target="#daftar">Klik Disini</a>
                         </div>
                     </div>
                 </div>
@@ -41,7 +42,11 @@
                             <div class="col-xl-6">
                                 <label for="poli_tujuan">Pilih poli</label>
                                 <select name="poli_tujuan" id="poli_tujuan" class="form-control" style="height: 40px">
+                                  <option value="poli mata">Poli mata</option>
+                                  <option value="poli umum">Poli umum</option>
                                   <option value="poli gigi">Poli gigi</option>
+                                  <option value="medical check up">Medical Check Up</option>
+                                  <option value="poli kulit dan kelamin">Poli Kulit dan Kelamin</option>
                                   <option value="poli jantung">Poli jantung</option>
                                 </select>
                             </div>

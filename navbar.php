@@ -55,10 +55,10 @@
                                             <li><a href="about.html">about</a></li>
                                         </ul>
                                     </li> -->
-                                    <li><a href="Doctors.html">Rekam Medis</a></li>
+                                    <li><a href="rekam_medis.php">Rekam Medis</a></li>
                                     <li><a href="contact.html">Faskes</a></li>
                                     <li><a href="rujukan.php">Rujukan</a></li>
-                                    <li><a href="pembayaran.html">Pembayaran</a></li>
+                                    <li><a href="history.php">History</a></li>
                                     <li><a href="profile.php">Profile</a></li>
                                     <li>Hallo, <a href="#"><?= $_SESSION["user"]["bpjs"]?></a>
                                         <ul class="submenu" style="background-color: black">

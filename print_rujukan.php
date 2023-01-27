@@ -41,6 +41,13 @@ else{
             $row->execute();
             $hasil = $row->fetch();
             if($hasil == false){
+                $sql = "SELECT * FROM antrian_janji_medis WHERE id_user = $id_user AND poli = '$poli_tujuan' ORDER BY id DESC";
+                $row = $db->prepare($sql);
+                $row->execute();
+                $hasil4 = $row->fetch();
+
+                $keluhan = $hasil4['keluhan'];
+
                 $sql = "INSERT INTO rujukan (id_user, id_rumah_sakit, id_dokter, poli, faskes, tanggal, keluhan) 
                                 VALUES (:id_user, :id_rumah_sakit, :id_dokter, :poli, :faskes, :tanggal, :keluhan)";
                 $stmt = $db->prepare($sql);
@@ -53,12 +60,29 @@ else{
                     ":poli" => $poli_tujuan,
                     ":faskes" => '2',
                     ":tanggal" => $tgl_kunjungan,
-                    ":keluhan" => '1',
+                    ":keluhan" => $keluhan,
                 );
 
                 // eksekusi query untuk menyimpan ke database
                 $saved = $stmt->execute($params);
                 if($saved){
+                    $sql = "INSERT INTO rekam_medis (id_user, tanggal, poli, rumah_sakit, dokter, keluhan) 
+                                VALUES (:id_user, :tanggal, :poli, :rumah_sakit, :dokter,:keluhan)";
+                    $stmt = $db->prepare($sql);
+
+                    // bind parameter ke query
+                    $params = array(
+                        ":id_user" => $id_user,
+                        ":tanggal" => $tgl_kunjungan,
+                        ":poli" => $poli_tujuan,
+                        ":rumah_sakit" => $id_rumah_sakit,
+                        ":dokter" => $id_dokter,
+                        ":keluhan" => $keluhan,
+                    );
+
+                    // eksekusi query untuk menyimpan ke database
+                    $saved = $stmt->execute($params);
+
                     $sql = "SELECT * FROM rujukan WHERE id_user = $id_user AND id_rumah_sakit = $id_rumah_sakit AND poli = '$poli_tujuan' AND tanggal = '$tgl_kunjungan'";
                     $row = $db->prepare($sql);
                     $row->execute();
@@ -145,6 +169,13 @@ else{
             $row->execute();
             $hasil = $row->fetch();
             if($hasil == false){
+                $sql = "SELECT * FROM antrian_janji_medis WHERE id_user = $id_user AND poli = '$poli_tujuan' ORDER BY id DESC";
+                $row = $db->prepare($sql);
+                $row->execute();
+                $hasil4 = $row->fetch();
+
+                $keluhan = $hasil4['keluhan'];
+
                 $sql = "INSERT INTO rujukan (id_user, id_rumah_sakit, id_dokter, poli, faskes, tanggal, keluhan) 
                                 VALUES (:id_user, :id_rumah_sakit, :id_dokter, :poli, :faskes, :tanggal, :keluhan)";
                 $stmt = $db->prepare($sql);
@@ -157,12 +188,26 @@ else{
                     ":poli" => $poli_tujuan,
                     ":faskes" => 'lanjutan',
                     ":tanggal" => $tgl_kunjungan,
-                    ":keluhan" => '1',
+                    ":keluhan" => $keluhan,
                 );
 
                 // eksekusi query untuk menyimpan ke database
                 $saved = $stmt->execute($params);
                 if($saved){
+                    $sql = "INSERT INTO rekam_medis (id_user, tanggal, poli, rumah_sakit, dokter, keluhan) 
+                                VALUES (:id_user, :tanggal, :poli, :rumah_sakit, :dokter,:keluhan)";
+                    $stmt = $db->prepare($sql);
+
+                    // bind parameter ke query
+                    $params = array(
+                        ":id_user" => $id_user,
+                        ":tanggal" => $tgl_kunjungan,
+                        ":poli" => $poli_tujuan,
+                        ":rumah_sakit" => $id_rumah_sakit,
+                        ":dokter" => $id_dokter,
+                        ":keluhan" => $keluhan,
+                    );
+                    $saved = $stmt->execute($params);
                     $sql = "SELECT * FROM rujukan WHERE id_user = $id_user AND id_rumah_sakit = $id_rumah_sakit AND poli = '$poli_tujuan' AND tanggal = '$tgl_kunjungan'";
                     $row = $db->prepare($sql);
                     $row->execute();
